@@ -1,8 +1,9 @@
 import java.util.*;
+import java.util.stream.Collectors;
 
 public class TrainConsistManager {
 
-    // Bogie class (OOP starts here 🔥)
+    // Reuse Bogie class from UC7
     static class Bogie {
         String name;
         int capacity;
@@ -16,7 +17,7 @@ public class TrainConsistManager {
     public static void main(String[] args) {
 
         System.out.println("=================================");
-        System.out.println("UC7 - Sort Bogies by Capacity");
+        System.out.println("UC8 - Filter Passenger Bogies Using Streams");
         System.out.println("=================================\n");
 
         // Create list of bogies
@@ -26,21 +27,18 @@ public class TrainConsistManager {
         bogies.add(new Bogie("AC Chair", 50));
         bogies.add(new Bogie("First Class", 30));
 
-        // Display before sorting
-        System.out.println("Before Sorting:");
-        for (Bogie b : bogies) {
+        // FILTER using Stream (capacity > 60)
+        List<Bogie> filtered = bogies.stream()
+                .filter(b -> b.capacity > 60)
+                .collect(Collectors.toList());
+
+        // Display filtered result
+        System.out.println("Bogies with capacity > 60:\n");
+
+        for (Bogie b : filtered) {
             System.out.println(b.name + " - " + b.capacity);
         }
 
-        // SORT using Comparator (ascending)
-        bogies.sort(Comparator.comparingInt(b -> b.capacity));
-
-        // Display after sorting
-        System.out.println("\nAfter Sorting (by Capacity):");
-        for (Bogie b : bogies) {
-            System.out.println(b.name + " - " + b.capacity);
-        }
-
-        System.out.println("\nUC7 operations completed successfully...");
+        System.out.println("\nUC8 operations completed successfully...");
     }
 }
